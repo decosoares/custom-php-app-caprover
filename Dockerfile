@@ -24,7 +24,7 @@ ENV PATH="${PATH}:/var/www/html/app/Vendor/bin"
 
 # Copy the code into /var/www/html/ inside the image
 COPY . /var/www/html
-s
+
 # Set default working directory
 #WORKDIR ./app
 
