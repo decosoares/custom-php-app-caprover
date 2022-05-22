@@ -1,0 +1,3 @@
+[submodule "apimaster"]
+	path = apimaster
+	url = https://gitlab.com/soaresandre/apimaster.git
