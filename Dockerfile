@@ -30,12 +30,12 @@ COPY . /var/www/html
 
 # Create tmp directory and make it writable by the web server
 RUN mkdir -p \
-    apimaster/tmp/cache/models \
-    apimaster/tmp/cache/persistent \
+    master/tmp/cache/models \
+    master/tmp/cache/persistent \
   && chown -R :www-data \
-    apimaster/tmp \
+    master/tmp \
   && chmod -R 770 \
-    apimaster/tmp
+    master/tmp
 
 # Enable Apache modules and restart
 RUN a2enmod rewrite \
