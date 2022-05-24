@@ -1,0 +1,120 @@
+<?php
+/**
+ * Routes configuration
+ *
+ * In this file, you set up routes to your controllers and their actions.
+ * Routes are very important mechanism that allows you to freely connect
+ * different URLs to chosen controllers and their actions (functions).
+ *
+ * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
+ * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
+ *
+ * Licensed under The MIT License
+ * For full copyright and license information, please see the LICENSE.txt
+ * Redistributions of files must retain the above copyright notice.
+ *
+ * @copyright     Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
+ * @link          https://cakephp.org CakePHP(tm) Project
+ * @package       app.Config
+ * @since         CakePHP(tm) v 0.2.9
+ * @license       https://opensource.org/licenses/mit-license.php MIT License
+ */
+
+/**
+ * Here, we are connecting '/' (base path) to controller called 'Pages',
+ * its action called 'display', and we pass a param to select the view file
+ * to use (in this case, /app/View/Pages/home.ctp)...
+ */
+	Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));
+/**
+ * ...and connect the rest of 'Pages' controller's URLs.
+ */
+	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
+
+	Router::connect('/api/v1/titulos/baixar', array('controller'=>'titulos','action'=>'baixar'));
+
+	Router::connect('/api/v1/duplicatas/:id', array('controller'=>'duplicatas','action'=>'v1_index'),
+					array(
+						'pass'=>array('id'),
+						'id' => '[0-9]+'));
+	Router::connect('/api/v1/duplicatas',array('controller'=>'duplicatas','action'=>'v1_index'));
+
+	Router::connect('/api/v1/produtos',array('controller'=>'produtos', 'action'=>'index'));
+	Router::connect('/api/v1/produtos/:id',
+					array('controller'=>'produtos', 'action'=>'index'),
+					array(
+						'pass' => array('id'),
+						'id'=>'[0-9]+')
+					);
+
+	Router::connect('/api/v1/clientes',array('controller'=>'clientes', 'action'=>'index'));
+	Router::connect('/api/v1/clientes/:id',
+					array('controller'=>'clientes', 'action'=>'index'),
+					array(
+						'pass' => array('id'),
+						'id'=>'[0-9]+')
+					);
+	Router::connect('/api/v1/clientes/vendedor/:vendedor_id',
+					array('controller'=>'clientes', 'action'=>'por_vendedor'),
+					array(
+						'pass' => array('vendedor_id'),
+						'vendedor_id'=>'[0-9]+')
+					);
+
+	Router::connect('/api/v1/pedidos/enviar',
+					array('controller'=>'pedidos', 'action'=>'enviar')
+					);
+	Router::connect('/api/v1/pedidos/vendedor/:vendedor_id',
+					array('controller'=>'pedidos', 'action'=>'por_vendedor'),
+					array(
+						'pass' => array('vendedor_id'),
+						'vendedor_id'=>'[0-9]+')
+					);
+
+	Router::connect('/api/v1/tipo_documento',array('controller'=>'tipo_documentos', 'action'=>'index'));
+	Router::connect('/api/v1/tipo_documento/:id',
+					array('controller'=>'tipo_documentos', 'action'=>'index'),
+					array(
+						'pass' => array('id'),
+						'id'=>'[0-9]+')
+					);
+
+	Router::connect('/api/v1/tipo_parcela',array('controller'=>'tipo_parcelas', 'action'=>'index'));
+	Router::connect('/api/v1/tipo_parcela/:id',
+					array('controller'=>'tipo_parcelas', 'action'=>'index'),
+					array(
+						'pass' => array('id'),
+						'id'=>'[0-9]+')
+					);
+
+	Router::connect('/api/v1/logar', array('controller'=>'users', 'action'=>'logar'));
+
+	Router::connect(
+		'/api/v1/titulos/vencidos/vendedor/:vendedor_id',
+		array('controller' => 'titulos', 'action' => 'vencidos_por_vendedor'),
+		array(
+			'pass' => array('vendedor_id'),
+			'vendedor_id' => '[0-9]+'
+		)
+	);
+
+	Router::connect(
+		'/api/v1/titulos/vendedor/:vendedor_id',
+		array('controller' => 'titulos', 'action' => 'por_vendedor'),
+		array(
+			'pass' => array('vendedor_id'),
+			'vendedor_id' => '[0-9]+'
+		)
+	);
+
+/**
+ * Load all plugin routes. See the CakePlugin documentation on
+ * how to customize the loading of plugin routes.
+ */
+	CakePlugin::routes();
+
+/**
+ * Load the CakePHP default routes. Only remove this if you do not want to use
+ * the built-in default routes.
+ */
+	require CAKE . 'Config' . DS . 'routes.php';
