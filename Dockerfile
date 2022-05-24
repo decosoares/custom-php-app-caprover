@@ -19,11 +19,11 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ 
 ENV PATH="${PATH}:/var/www/html/lib/Cake/Console"
 ENV PATH="${PATH}:/var/www/html/app/Vendor/bin"
 
-# COPY site conf file
-#COPY ./docker/apache/site.conf /etc/apache2/sites-available/000-default.conf
-
 # Copy the code into /var/www/html/ inside the image
 COPY . /var/www/html
+
+# COPY site conf file
+#COPY ./docker/apache/site.conf /etc/apache2/sites-available/000-default.conf
 
 # Set default working directory
 #WORKDIR ./app
