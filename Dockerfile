@@ -39,7 +39,7 @@ RUN mkdir -p \
   && chown -R :www-data \
     master \
   && chmod -R 777 \
-    master/tmp 
+    master 
 
 # Enable Apache modules and restart
 RUN a2enmod rewrite \
