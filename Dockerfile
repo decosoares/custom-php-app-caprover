@@ -24,7 +24,7 @@ COPY . /var/www/html
 COPY /master /var/www/html/master
 
 # COPY site conf file
-#COPY ./docker/apache/site.conf /etc/apache2/sites-available/000-default.conf
+#COPY ./apache/site.conf /etc/apache2/sites-available/000-default.conf
 
 # Set default working directory
 #WORKDIR ./app
