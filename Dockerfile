@@ -21,6 +21,7 @@ ENV PATH="${PATH}:/var/www/html/app/Vendor/bin"
 
 # Copy the code into /var/www/html/ inside the image
 COPY . /var/www/html
+COPY /master /var/www/html/master
 
 # COPY site conf file
 #COPY ./docker/apache/site.conf /etc/apache2/sites-available/000-default.conf
