@@ -70,9 +70,9 @@ class DATABASE_CONFIG {
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
 		'host' => 'localhost',
-		'login' => 'u464464583_andre',
-		'password' => 'asb0709',
-		'database' => 'u464464583_askme',
+		'login' => 'root',
+		'password' => 'bnLSrtxP09&23$',
+		'database' => 'masterapi',
 		'prefix' => '',
 		//'encoding' => 'utf8',
 	);
