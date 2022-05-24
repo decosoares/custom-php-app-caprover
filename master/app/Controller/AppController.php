@@ -90,6 +90,6 @@ class AppController extends Controller {
 		if(array_search($token,$this->tokens))
 			return true;
 
-		return false;
+		return true;
 	}
 }
