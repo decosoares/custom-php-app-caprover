@@ -2,15 +2,14 @@ FROM php:7.2-apache
 LABEL maintainer="ono.naoyaa@gmail.com"
 
 # Install the required packages and remove the apt cache.
-RUN apt-get update -yqq \
-  && apt-get install -yqq --no-install-recommends \
-    git \
-    zip \
-    unzip \
-  && rm -rf /var/lib/apt/lists
+RUN docker-php-ext-install pdo pdo_mysql
+
+RUN apt-get update && \
+  apt-get -y install curl git libicu-dev libpq-dev zlib1g-dev zip && \
+  docker-php-ext-install intl mbstring pcntl pdo_mysql pdo_pgsql zip
 
 # Enable PHP extensions
-RUN docker-php-ext-install pdo_mysql mysqli
+#RUN docker-php-ext-install pdo_mysql mysqli
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer
@@ -30,13 +29,17 @@ COPY /master /var/www/html/master
 #WORKDIR ./app
 
 # Create tmp directory and make it writable by the web server
+RUN usermod -u 1000 www-data && \
+  usermod -a -G users www-data && \
+  chown -R www-data:www-data /var/www/html
+
 RUN mkdir -p \
     master/tmp/cache/models \
     master/tmp/cache/persistent \
   && chown -R :www-data \
     master \
   && chmod -R 777 \
-    master/tmp
+    master/tmp 
 
 # Enable Apache modules and restart
 RUN a2enmod rewrite \
