@@ -34,7 +34,7 @@ RUN mkdir -p \
     master/tmp/cache/models \
     master/tmp/cache/persistent \
   && chown -R :www-data \
-    master/tmp \
+    master \
   && chmod -R 777 \
     master/tmp
 
