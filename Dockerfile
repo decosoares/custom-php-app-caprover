@@ -35,7 +35,7 @@ RUN mkdir -p \
     master/tmp/cache/persistent \
   && chown -R :www-data \
     master/tmp \
-  && chmod -R 770 \
+  && chmod -R 777 \
     master/tmp
 
 # Enable Apache modules and restart
